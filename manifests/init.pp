@@ -38,7 +38,7 @@ class horizon (
   $config_dir_purge          = false,
   $config_dir_recurse        = true,
 
-  $dependency_class          = undef,
+  $dependency_class          = 'horizon::apache',
   $my_class                  = undef,
 
   $monitor_class             = undef,
@@ -67,7 +67,7 @@ class horizon (
   $manage_config_file_content = default_content($config_file_content, $config_file_template)
 
   $manage_config_file_notify  = $config_file_notify ? {
-    'class_default' => 'Service[horizon]',
+    'class_default' => 'Service[apache]',
     ''              => undef,
     default         => $config_file_notify,
   }

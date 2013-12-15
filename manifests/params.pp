@@ -5,17 +5,17 @@
 class horizon::params {
 
   $package_name = $::osfamily ? {
-    'Redhat' => 'openstack-horizon',
-    default  => 'horizon-server',
+    'Redhat'   => 'openstack-dashboard',
+    'Debian'   => $::operatingsystem ? {
+      'Debian' => 'openstack-dashboard-apache',
+      'Ubuntu' => 'openstack-dashboard',
+    }
   }
 
-  $service_name = $::osfamily ? {
-    'Redhat' => 'openstack-horizon-server',
-    default  => 'horizon-server',
-  }
+  $service_name = ''
 
   $config_file_path = $::osfamily ? {
-    default => '/etc/horizon/horizon.conf',
+    default  => '/etc/openstack-dashboard/local_settings.py',
   }
 
   $config_file_mode = $::osfamily ? {
@@ -27,11 +27,11 @@ class horizon::params {
   }
 
   $config_file_group = $::osfamily ? {
-    default => 'horizon',
+    default => 'root',
   }
 
   $config_dir_path = $::osfamily ? {
-    default => '/etc/horizon',
+    default => '/etc/openstack-dashboard',
   }
 
   case $::osfamily {
