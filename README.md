@@ -14,7 +14,7 @@
 
 ##Overview
 
-This module installs, manages and configures horizon and its services.
+This module installs, manages and configures horizon.
 
 ##Module Description
 
@@ -28,10 +28,8 @@ This module is intended to be a quick replacement for setups where you want to m
 ##Setup
 
 ###Resources managed by horizon module
-* This module installs the horizon package (in case of multiple services, the horizon-api package is installed)
-* Enables the horizon service (in case of multiple services, the horizon-api service is managed)
+* This module installs the horizon package
 * Can manage all the configuration files (by default no file is changed)
-* Can manage any horizon service and its configuration file (by default no file is changed)
 
 ###Setup Requirements
 * PuppetLabs [stdlib module](https://github.com/puppetlabs/puppetlabs-stdlib)
@@ -57,15 +55,6 @@ The module provides a generic define to manage any horizon configuration file in
           content => '# Test',
         }
 
-A define to manage the package/service/configfile of single horizon services. To install the package and run the service:
-
-        horizon::generic_service { 'horizon-registry': }
-
-To provide a configuration file for the service (alternative to horizon::conf):
-
-        horizon::generic_service { 'horizon-registry':
-          config_file_template => 'site/horizon/horizon-registry.conf
-        }
 
 ##Usage
 
